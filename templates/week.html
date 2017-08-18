@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Report</title>
+
+    <style type="text/css">
+        body {
+            background-color: black;
+            color: #eeeeee;
+            font-family: Avenir, Arial, sans-serif;
+        }
+
+        table {
+            border: 1px solid #444444;
+        }
+
+        table td {
+            border: 1px solid #444444;
+            margin: 0;
+            padding: 5px;
+            min-width: 115px;
+        }
+
+        table th {
+            background-color: #222222;
+        }
+
+        table .odd {
+            background-color: black;
+        }
+
+        table .even {
+            background-color: #101010;
+        }
+
+
+        .artifact {
+            color: rgb(229, 204, 128);
+        }
+        .legendary {
+            color: rgb(255, 128, 0);
+        }
+        .epic {
+            color: rgb(163, 53, 238);
+        }
+        .rare {
+            color: rgb(0, 112, 255);
+        }
+        .uncommon {
+            color: rgb(30, 255, 0);
+        }
+        .common {
+            color: #666;
+        }
+
+        .DeathKnight {
+            color: #C41F3B;
+        }
+        .DemonHunter {
+            color: #A330C9;
+        }
+        .Druid {
+            color: #FF7D0A;
+        }
+        .Hunter {
+            color: #ABD473;
+        }
+        .Mage {
+            color: #69CCF0;
+        }
+        .Monk {
+            color: #00FF96;
+        }
+        .Paladin {
+            color: #F58CBA;
+        }
+        .Priest {
+            color: #FFFFFF;
+        }
+        .Rogue {
+            color: #FFF569;
+        }
+        .Shaman {
+            color: #0070DE;
+        }
+        .Warlock {
+            color: #9482C9;
+        }
+        .Warrior {
+            color: #C79C6E;
+        }
+
+    </style>
+</head>
+
+<body>
+    <table id="week-table">
+        <tr>
+            <th onclick="sortTable(0, 'week-table')">
+                Name
+            </th>
+            <th onclick="sortTable(1, 'week-table')">
+                Monday
+            </th>
+            <th onclick="sortTable(2, 'week-table')">
+                Tuesday
+            </th>
+            <th onclick="sortTable(3, 'week-table')">
+                Wednesday
+            </th>
+            <th onclick="sortTable(4, 'week-table')">
+                Thursday
+            </th>
+            <th onclick="sortTable(5, 'week-table')">
+                Friday
+            </th>
+            <th onclick="sortTable(6, 'week-table')">
+                Saturday
+            </th>
+            <th onclick="sortTable(7, 'week-table')">
+                Sunday
+            </th>
+        </tr>
+        {% for player in players %}
+            <tr>
+                <td class="{{ player.klass }}">
+                    {{ player.name }}
+                </td>
+                {% for rate in player.attendance_rate %}
+                    {% if rate is greaterthan 99 %}
+                        <td class="artifact">
+                    {% elif rate is greaterthan 94 %}
+                        <td class="legendary">
+                    {% elif rate is greaterthan 74 %}
+                        <td class="epic">
+                    {% elif rate is greaterthan 49 %}
+                        <td class="rare">
+                    {% elif rate is greaterthan 49 %}
+                        <td class="uncommon">
+                    {% else %}
+                        <td class="common">
+                    {% endif %}
+                        {{ rate }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+<script>
+    function sortTable(n, table_id) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById(table_id;
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;
+            } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
