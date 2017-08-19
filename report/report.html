@@ -22,7 +22,7 @@
             <input class="form-control" id="inp-realm" value="Frostmourne">
         </div>
         <div class="form-group">
-            <label for="inp-realm">Realm</label>
+            <label for="inp-region">Region</label>
             <select class="form-control" id="inp-region" title="Region">
                 <option value="us">US</option>
                 <option value="eu">EU</option>
@@ -31,9 +31,35 @@
                 <option value="cn">CN</option>
             </select>
         </div>
-
         <div class="form-group">
-            <label for="inp-realm">WarcraftLogs API Key</label>
+            <label>Zones</label>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" id="inp-zone13" type="checkbox" value="13" checked="true">
+                    Tomb of Sargeras
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" id="inp-zone11" type="checkbox" value="11">
+                    Nighthold
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" id="inp-zone12" type="checkbox" value="12">
+                    Trial of Valor
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" id="inp-zone10" type="checkbox" value="10">
+                    Emerald Nightmare
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inp-realm">Warcraft Logs Public Key (Can be found at the bottom of <a href="https://www.warcraftlogs.com/accounts/changeuser" target="_blank">this</a> page)</label>
             <input class="form-control" id="inp-wclkey" value="">
         </div>
         <a class="btn btn-primary" onclick="generateReport()" href="#">Generate Report</a>
