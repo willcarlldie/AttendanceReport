@@ -97,7 +97,7 @@ function tryOutputReport() {
 function discoverPlayers(report) {
     for (var i = 0; i < report.friendlies.length; i++) {
         var friend = report.friendlies[i];
-        if (playerClasses.indexOf(friend.type)) {
+        if (playerClasses.indexOf(friend.type) != -1) {
             var alreadyInSet = false;
             for (var j = 0; j < players.length; j++) {
                 var player = players[j];
