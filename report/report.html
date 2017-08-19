@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Attendance Report</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/report.css">
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
+</head>
+
+<body>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="inp-guild">Guild</label>
+            <input class="form-control" id="inp-guild" value="Riptide">
+        </div>
+        <div class="form-group">
+            <label for="inp-realm">Realm</label>
+            <input class="form-control" id="inp-realm" value="Frostmourne">
+        </div>
+        <div class="form-group">
+            <label for="inp-realm">Realm</label>
+            <select class="form-control" id="inp-region" title="Region">
+                <option value="us">US</option>
+                <option value="eu">EU</option>
+                <option value="kr">KR</option>
+                <option value="tw">TW</option>
+                <option value="cn">CN</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="inp-realm">WarcraftLogs API Key</label>
+            <input class="form-control" id="inp-wclkey" value="">
+        </div>
+        <a class="btn btn-primary" onclick="generateReport()" href="#">Generate Report</a>
+    </form>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/popper.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="js/report.js"></script>
+</body>
+</html>

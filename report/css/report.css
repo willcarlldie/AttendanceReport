@@ -1,0 +1,55 @@
+.artifact {
+    color: rgb(229, 204, 128);
+}
+.legendary {
+    color: rgb(255, 128, 0);
+}
+.epic {
+    color: rgb(163, 53, 238);
+}
+.rare {
+    color: rgb(0, 112, 255);
+}
+.uncommon {
+    color: rgb(30, 255, 0);
+}
+.common {
+    color: #666;
+}
+
+.DeathKnight {
+    color: #C41F3B;
+}
+.DemonHunter {
+    color: #A330C9;
+}
+.Druid {
+    color: #FF7D0A;
+}
+.Hunter {
+    color: #ABD473;
+}
+.Mage {
+    color: #69CCF0;
+}
+.Monk {
+    color: #00FF96;
+}
+.Paladin {
+    color: #F58CBA;
+}
+.Priest {
+    color: #FFFFFF;
+}
+.Rogue {
+    color: #FFF569;
+}
+.Shaman {
+    color: #0070DE;
+}
+.Warlock {
+    color: #9482C9;
+}
+.Warrior {
+    color: #C79C6E;
+}
