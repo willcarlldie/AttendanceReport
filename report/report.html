@@ -6,8 +6,8 @@
     <title>Attendance Report</title>
 
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/report.css">
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="css/report.css">
 </head>
 
 <body>
@@ -59,11 +59,35 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inp-realm">Warcraft Logs Public Key (Can be found at the bottom of <a href="https://www.warcraftlogs.com/accounts/changeuser" target="_blank">this</a> page)</label>
+            <label for="inp-realm">Warcraft Logs Public Key (Can be found at the bottom of <a href="https://www.warcraftlogs.com/accounts/changeuser"
+                                                                                              target="_blank">this</a> page)</label>
             <input class="form-control" id="inp-wclkey" value="">
         </div>
         <a class="btn btn-primary" onclick="generateReport()" href="#">Generate Report</a>
     </form>
+    <br>
+    <div class="progress">
+        <div id="prog-parse" class="progress-bar" role="progressbar" style="width:0">
+        </div>
+    </div>
+    <br>
+</div>
+
+<div class="container">
+    <table id="tb-weekday-rates">
+        <thead>
+        <tr>
+            <th data-field="name">Name</th>
+            <th data-field="monday">Monday</th>
+            <th data-field="tuesday">Tuesday</th>
+            <th data-field="wednesday">Wednesday</th>
+            <th data-field="thursday">Thursday</th>
+            <th data-field="friday">Friday</th>
+            <th data-field="saturday">Saturday</th>
+            <th data-field="sunday">Sunday</th>
+        </tr>
+        </thead>
+    </table>
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
