@@ -143,7 +143,7 @@ function parseReport(report) {
         playerInReport = false;
         startDate = new Date(report.start);
         // keep track of how many reports we see on each given week day
-        player.totalDays[startDate.getDay()]++;
+        player.totalDays[startDate.getDay() - 1]++;
         // try and find the player in the report
         for (var j = 0; j < report.friendlies.length; j++) {
             var friend = report.friendlies[j];
@@ -151,22 +151,22 @@ function parseReport(report) {
                 // keep track of the reports the player is in
                 playerInReport = true;
                 player.presentReports.push(report);
-                player.presentDays[startDate.getDay()]++;
+                player.presentDays[startDate.getDay() - 1]++;
                 // check if the player was late
                 if (playerWasLate(player)) {
                     player.lateReports.push(report);
-                    player.lateDays[startDate.getDay()]++;
+                    player.lateDays[startDate.getDay() - 1]++;
                 }
                 // check if the player left early
                 if (playerLeftEarly(player, report)) {
                     player.earlyLeaveReports.push(report);
-                    player.earlyLeaveDays[startDate.getDay()]++;
+                    player.earlyLeaveDays[startDate.getDay() - 1]++;
                 }
             }
             // keep track of the reports the player missed
             if (!playerInReport) {
                 player.absentReports.push(report);
-                player.absentDays[startDate.getDay()]++;
+                player.absentDays[startDate.getDay() - 1]++;
             }
         }
     }
