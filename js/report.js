@@ -38,6 +38,25 @@ function updateProgBar() {
     pb.text(reportsParsed + " / " + reportsTotal);
 }
 
+function colorData(tableSelector) {
+    $(tableSelector + " td").each(function (index) {
+        var rate = $(this).text();
+        if (rate == 100) {
+            $(this).addClass("artifact");
+        } else if (rate > 94) {
+            $(this).addClass("legendary");
+        } else if (rate > 74) {
+            $(this).addClass("epic");
+        } else if (rate > 49) {
+            $(this).addClass("rare");
+        } else if (rate > 24) {
+            $(this).addClass("uncommon");
+        } else {
+            $(this).addClass("common");
+        }
+    })
+}
+
 function tryOutputReport() {
     // dont output an incomplete report
     if (reportsParsed != reportsTotal) {
@@ -45,12 +64,13 @@ function tryOutputReport() {
     }
     console.log("Outputting attendance report for " + players.length + " players");
 
-    var weekTable = [];
+    // attendance rates for each week day
+    var weekdayAttendanceData = [];
     for (var i = 0; i < players.length; i++) {
         var player = players[i];
         var dayRates = [];
         for (var j = 0; j < 7; j++) {
-            dayRates[j] = (Math.round(player.presentDays[j] / player.totalDays[j] * 100) || 0) + "%";
+            dayRates[j] = (Math.round(player.presentDays[j] / player.totalDays[j] * 100) || 0);
         }
         var row = {
             "name": player.name,
@@ -62,36 +82,173 @@ function tryOutputReport() {
             "saturday": dayRates[5],
             "sunday": dayRates[6]
         };
-        weekTable.push(row);
+        weekdayAttendanceData.push(row);
     }
-    $("#tb-weekday-rates").bootstrapTable({
+    $("#tb-weekday-attendance-rates").bootstrapTable({
+        search: true,
         columns: [{
+            sortable: true,
             field: "name",
             title: "Name"
         }, {
+            sortable: true,
             field: "monday",
             title: "Monday"
         }, {
+            sortable: true,
             field: "tuesday",
             title: "Tuesday"
         }, {
+            sortable: true,
             field: "wednesday",
             title: "Wednesday"
         }, {
+            sortable: true,
             field: "thursday",
             title: "Thursday"
         }, {
+            sortable: true,
             field: "friday",
             title: "Friday"
         }, {
+            sortable: true,
             field: "saturday",
             title: "Saturday"
         }, {
+            sortable: true,
             field: "sunday",
             title: "Sunday"
         }],
-        data: weekTable
+        data: weekdayAttendanceData,
+        onAll: function (name, args) {
+            colorData("#tb-weekday-attendance-rates");
+        }
     });
+
+    // late rates for each weekday
+    var weekdayLateData = [];
+    for (var i = 0; i < players.length; i++) {
+        var player = players[i];
+        var dayRates = [];
+        for (var j = 0; j < 7; j++) {
+            dayRates[j] = (Math.round(player.lateDays[j] / player.totalDays[j] * 100) || 0);
+        }
+        var row = {
+            "name": player.name,
+            "monday": dayRates[0],
+            "tuesday": dayRates[1],
+            "wednesday": dayRates[2],
+            "thursday": dayRates[3],
+            "friday": dayRates[4],
+            "saturday": dayRates[5],
+            "sunday": dayRates[6]
+        };
+        weekdayLateData.push(row);
+    }
+    $("#tb-weekday-late-rates").bootstrapTable({
+        search: true,
+        columns: [{
+            sortable: true,
+            field: "name",
+            title: "Name"
+        }, {
+            sortable: true,
+            field: "monday",
+            title: "Monday"
+        }, {
+            sortable: true,
+            field: "tuesday",
+            title: "Tuesday"
+        }, {
+            sortable: true,
+            field: "wednesday",
+            title: "Wednesday"
+        }, {
+            sortable: true,
+            field: "thursday",
+            title: "Thursday"
+        }, {
+            sortable: true,
+            field: "friday",
+            title: "Friday"
+        }, {
+            sortable: true,
+            field: "saturday",
+            title: "Saturday"
+        }, {
+            sortable: true,
+            field: "sunday",
+            title: "Sunday"
+        }],
+        data: weekdayLateData,
+        onAll: function (name, args) {
+            colorData("#tb-weekday-late-rates");
+        }
+    });
+
+    // early leave rates for each weekday
+    var weekdayEarlyLeaveData = [];
+    for (var i = 0; i < players.length; i++) {
+        var player = players[i];
+        var dayRates = [];
+        for (var j = 0; j < 7; j++) {
+            dayRates[j] = (Math.round(player.earlyLeaveDays[j] / player.totalDays[j] * 100) || 0);
+        }
+        var row = {
+            "name": player.name,
+            "monday": dayRates[0],
+            "tuesday": dayRates[1],
+            "wednesday": dayRates[2],
+            "thursday": dayRates[3],
+            "friday": dayRates[4],
+            "saturday": dayRates[5],
+            "sunday": dayRates[6]
+        };
+        weekdayEarlyLeaveData.push(row);
+    }
+    $("#tb-weekday-early-leave-rates").bootstrapTable({
+        search: true,
+        columns: [{
+            sortable: true,
+            field: "name",
+            title: "Name"
+        }, {
+            sortable: true,
+            field: "monday",
+            title: "Monday"
+        }, {
+            sortable: true,
+            field: "tuesday",
+            title: "Tuesday"
+        }, {
+            sortable: true,
+            field: "wednesday",
+            title: "Wednesday"
+        }, {
+            sortable: true,
+            field: "thursday",
+            title: "Thursday"
+        }, {
+            sortable: true,
+            field: "friday",
+            title: "Friday"
+        }, {
+            sortable: true,
+            field: "saturday",
+            title: "Saturday"
+        }, {
+            sortable: true,
+            field: "sunday",
+            title: "Sunday"
+        }],
+        data: weekdayEarlyLeaveData,
+        onAll: function (name, args) {
+            colorData("#tb-weekday-early-leave-rates");
+        }
+    });
+
+    // show the report container
+    $("#report-container").show();
 }
 
 function discoverPlayers(report) {

@@ -73,9 +73,27 @@
     <br>
 </div>
 
-<div class="container">
-    <table id="tb-weekday-rates">
-    </table>
+<div id="report-container" class="container" style="display: none;">
+    <ul>
+        <li>
+            <a data-toggle="collapse" href="#container-weekday-attendance-rates">View Attendance Rates</a>
+            <div id="container-weekday-attendance-rates" class="collapse">
+                <table id="tb-weekday-attendance-rates"></table>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#container-weekday-late-rates">View Late Rates</a>
+            <div id="container-weekday-late-rates" class="collapse">
+                <table id="tb-weekday-late-rates"></table>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#container-weekday-early-leave-rates">View Early Leave Rates</a>
+            <div id="container-weekday-early-leave-rates" class="collapse">
+                <table id="tb-weekday-early-leave-rates"></table>
+            </div>
+        </li>
+    </ul>
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
